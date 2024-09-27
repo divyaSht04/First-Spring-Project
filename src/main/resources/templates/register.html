@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet"  th:href="@{/css/register.css}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        span {
+            font-size: 12px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/register}" th:object="${teacher}" method="post">
+    <div>
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstName}" />
+        <span th:if="${firstNameError}" th:text="${firstNameError}"></span>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastName}" />
+        <span th:if="${lastNameError}" th:text="${lastNameError}"></span>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="text" th:field="*{email}" />
+        <span th:if="${emailError}" th:text="${emailError}"></span>
+    </div>
+    <div>
+        <label>Phone Number:</label>
+        <input type="text" th:field="*{phoneNumber}" />
+        <span th:if="${phoneNumberError}" th:text="${phoneNumberError}"></span>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" th:field="*{password}" />
+        <span th:if="${passwordError}" th:text="${passwordError}"></span>
+    </div>
+    <div>
+        <label>Confirm Password:</label>
+        <input type="password" th:field="*{confirmPassword}" />
+        <span th:if="${confirmPasswordError}" th:text="${confirmPasswordError}"></span>
+    </div>
+    <button type="submit">Register</button>
+</form>
+
+</body>
+</html>
