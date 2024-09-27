@@ -18,4 +18,12 @@ public class TeacherServices {
     public void saveTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
     }
+
+    public Teacher findTeacherByEmail(String email) {
+        return teacherRepository.findByEmail(email);
+    }
+
+    public Teacher findTeacherByNumber(String number) {
+        return teacherRepository.findByPhoneNumber(number);
+    }
 }

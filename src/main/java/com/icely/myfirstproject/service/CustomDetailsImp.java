@@ -18,9 +18,12 @@ public class CustomDetailsImp implements UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Teacher teacher = teacherRepository.findByEmail(email);
+
         if (teacher == null) {
             throw new UsernameNotFoundException(email + " not found");
+
         }
+
         return new CustomDetails(teacher);
     }
 }
