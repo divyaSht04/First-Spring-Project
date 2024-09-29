@@ -2,8 +2,9 @@ package com.icely.myfirstproject.controller;
 
 import com.icely.myfirstproject.model.Teacher;
 import com.icely.myfirstproject.service.TeacherServices;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +23,10 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
-    }
-
-    @PostMapping
-    public String login(@ModelAttribute("user") User user, Model model) {
 
         return "login";
     }
+
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -94,8 +91,6 @@ public class AuthController {
             model.addAttribute("phoneNumberError", "This phoneNumber already exists.");
             hasErrors = true;
         }
-
-
 
         if (hasErrors) {
             return "register";

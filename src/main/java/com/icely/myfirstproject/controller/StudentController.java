@@ -57,19 +57,22 @@ public class StudentController {
     //editing students
     @PostMapping("/admin/student/edit/{id}")
     public String editStudent(@ModelAttribute("student") Student student, @PathVariable int id, Model model) {
-
         try {
             Student student1 = studentService.getStudentById(id);
-            student1.setName(student.getName());
-            student1.setAddress(student.getAddress());
-            student1.setEmail(student.getEmail());
-            student1.setAddress(student.getAddress());
-            student1.setNumber(student.getNumber());
-            studentService.editStudent(student1);
-            return "redirect:/admin/students";
-        }catch (Exception e){
+            if (student1 != null) {
+                student1.setName(student.getName());
+                student1.setAddress(student.getAddress());
+                student1.setEmail(student.getEmail());
+                student1.setNumber(student.getNumber());
+
+                studentService.editStudent(student1);
+                return "redirect:/admin/students";
+            }
+            model.addAttribute("error", "Student not found");
+            return "editStudentPage";
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            model.addAttribute("error",e.getMessage());
+            model.addAttribute("error", e.getMessage());
             return "editStudentPage";
         }
     }
@@ -77,7 +80,7 @@ public class StudentController {
     @GetMapping("/admin/student/delete/{id}")
     public String deleteStudentPage(@PathVariable int id) {
         studentService.deleteStudentById(id);
-        return "redirect:/students";
+        return "redirect:/admin/students";
     }
 
     @GetMapping("/StudentPage")

@@ -35,11 +35,15 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .logout(logout -> logout.logoutSuccessUrl("/login?logout=true")
                         .logoutUrl("/logout")
+                        .invalidateHttpSession(true)
                         .permitAll())
                 .formLogin(form -> form.loginPage("/login")
                         .successHandler(new AuthenticationRedirect())
                         .failureUrl("/login?error=true"))
                 .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(true))
                 .build();
     }
 

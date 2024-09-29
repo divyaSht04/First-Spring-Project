@@ -70,7 +70,9 @@
             <scope>runtime</scope>
         </dependency>
 
-<!--        <dependency>-->
+
+
+        <!--        <dependency>-->
 <!--            <groupId>com.oracle.database.jdbc</groupId>-->
 <!--            <artifactId>ojdbc8</artifactId>-->
 <!--            <version>19.8.0.0</version>-->
