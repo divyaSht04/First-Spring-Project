@@ -2,6 +2,10 @@ package com.icely.myfirstproject.model;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "teacher")
 public class Teacher {
@@ -9,16 +13,25 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotEmpty(message = "First Name is required.")
     private String firstName;
+
+    @NotEmpty(message = "Last Name is required.")
     private String lastName;
 
-    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "Email is required.")
+    @Email(message = "Email should be valid.")
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    @Column(unique = true, nullable = false)
+    @NotEmpty(message = "Phone Number is required.")
     private String phoneNumber;
+
+    @NotEmpty(message = "Password is required.")
+    @Size(min = 6, message = "Password must be at least 6 characters.")
     private String password;
 
+    @NotEmpty(message = "Confirm Password is required.")
     private String confirmPassword;
     private String role;
 

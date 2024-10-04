@@ -4,15 +4,16 @@
     <title>Register</title>
     <link rel="stylesheet"  th:href="@{/css/register.css}" />
     <style>
-        body {
+        main {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh;
-            margin: 0;
+            height: 50%;
+            margin: 30px 0;
+            gap: 20px;
         }
 
         form {
@@ -68,40 +69,51 @@
     </style>
 </head>
 <body>
+<header th:insert="fragments/header">
+
+</header>
+<main>
+
 <h1> Register Form! </h1>
-<form th:action="@{/register}" th:object="${teacher}" method="post">
-    <div>
-        <label>First Name:</label>
-        <input type="text" th:field="*{firstName}" />
-        <span th:if="${firstNameError}" th:text="${firstNameError}"></span>
-    </div>
-    <div>
-        <label>Last Name:</label>
-        <input type="text" th:field="*{lastName}" />
-        <span th:if="${lastNameError}" th:text="${lastNameError}"></span>
-    </div>
-    <div>
-        <label>Email:</label>
-        <input type="text" th:field="*{email}" />
-        <span th:if="${emailError}" th:text="${emailError}"></span>
-    </div>
-    <div>
-        <label>Phone Number:</label>
-        <input type="text" th:field="*{phoneNumber}" />
-        <span th:if="${phoneNumberError}" th:text="${phoneNumberError}"></span>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" th:field="*{password}" />
-        <span th:if="${passwordError}" th:text="${passwordError}"></span>
-    </div>
-    <div>
-        <label>Confirm Password:</label>
-        <input type="password" th:field="*{confirmPassword}" />
-        <span th:if="${confirmPasswordError}" th:text="${confirmPasswordError}"></span>
-    </div>
-    <button type="submit">Register</button>
-</form>
+    <form th:action="@{/register}" th:object="${teacher}" method="post">
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" th:field="*{firstName}" />
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" ></span>
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName"  th:field="*{lastName}" />
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        </div>
+        <div>
+            <label for="Email">Email:</label>
+            <input type="text" id="Email" th:field="*{email}" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            <span th:if="${emailError}" th:text="${emailError}"></span> <!-- Custom email error -->
+        </div>
+        <div>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+            <span th:if="${phoneNumberError}" th:text="${phoneNumberError}"></span> <!-- Custom phone number error -->
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" />
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" th:field="*{confirmPassword}" />
+            <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
+            <span th:if="${confirmPasswordError}" th:text="${confirmPasswordError}"></span> <!-- Custom confirm password error -->
+        </div>
+        <button type="submit">Register</button>
+    </form>
+
+</main>
 
 </body>
 </html>

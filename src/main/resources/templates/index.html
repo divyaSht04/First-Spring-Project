@@ -27,10 +27,14 @@
     </style>
 </head>
 <body>
+<header th:include="fragments/header">
+
+</header>
+
 <div class="container">
     <h1>Welcome to the Student List</h1>
     <p>Here you can find the list of students and add new students to the system.</p>
-    <a th:href="@{/admin/students}"> <button class="add-student-button">  Students Page  </button> </a>
+    <a th:href="@{/students}"> <button class="add-student-button">  Students Page  </button> </a>
 </div>
 </body>
 </html>

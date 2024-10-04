@@ -21,7 +21,6 @@ public class CustomDetailsImp implements UserDetailsService
 
         if (teacher == null) {
             throw new UsernameNotFoundException(email + " not found");
-
         }
 
         return new CustomDetails(teacher);

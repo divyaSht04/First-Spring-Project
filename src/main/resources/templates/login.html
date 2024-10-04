@@ -2,17 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/login.css}" />
     <style>
-        body {
+        main {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh;
+            height: 100%;
             margin: 0;
+            gap: 30px;
+            margin-top: 50px;
         }
 
         form {
@@ -72,13 +73,30 @@
 </head>
 <body>
 
-<div th:if="${param.error}" class="error">
-    Invalid username or password. Please try again.
+<header th:include="fragments/header">
+
+</header>
+
+<!--    ERROR THROUGH PARAMETER OF SPRING SECURITY-->
+<!--<div th:if="${param.error}" class="error">-->
+<!--    Invalid username or password. Please try again.-->
+<!--</div>-->
+
+<!--<div th:if="${param.logout}" class="logout-success">-->
+<!--    You have been logged out successfully.-->
+<!--</div>-->
+
+<!--    CUSTOM ERROR MESSAGE!-->
+<div th:if="${loginError}" class="error">
+    <p th:text="${loginError}"> </p>
 </div>
 
-<div th:if="${param.logout}" class="logout-success">
-    You have been logged out successfully.
+<div th:if="${logoutSuccess}" class="logout-success">
+    <p th:text="${logoutSuccess}"> </p>
 </div>
+
+<main>
+<!--    LOGIN FORM-->
 
 <h1>LOGIN FORM</h1>
 <form th:action="@{/login}" method="post">
@@ -92,6 +110,7 @@
     </div>
     <button type="submit">Login</button>
 </form>
+</main>
 
 </body>
 </html>

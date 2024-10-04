@@ -6,6 +6,9 @@
 </head>
 <body>
 
+<header th:insert="~{fragments/header}">
+
+</header>
 
 <h1>Edit Student</h1>
 
@@ -19,7 +22,7 @@
   <p th:text="${successMessage}">Student updated successfully!</p>
 </div>
 
-<form th:object="${student}" method="post" th:action="@{/student/edit/{id}(id=${student.id})}">
+<form th:object="${student}" method="post" th:action="@{/admin/student/edit/{id}(id=${student.id})}">
   <label>Name:</label>
   <input type="text" th:field="*{name}" /><br/><br/>
   <label>Email:</label>

@@ -16,7 +16,9 @@ public class AuthenticationRedirect implements AuthenticationSuccessHandler {
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-        if(roles.contains("admin")) response.sendRedirect(request.getContextPath() + "/");
+        System.out.println(roles.contains("ADMIN"));
+
+        if(roles.contains("ADMIN")) response.sendRedirect(request.getContextPath() + "/students");
         else response.sendRedirect(request.getContextPath() + "/StudentPage");
     }
 }

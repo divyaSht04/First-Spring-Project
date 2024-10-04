@@ -7,6 +7,10 @@
 </head>
 <body>
 
+<header th:include="fragments/header">
+
+</header>
+
 
 <div th:if="${error}">
     <span th:text="${error}">  </span>

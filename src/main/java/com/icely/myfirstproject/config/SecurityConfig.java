@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register").permitAll()
-                        .requestMatchers("/admin/**", "/").hasAnyAuthority("admin")
+                        .requestMatchers("/admin/**", "/").hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .logout(logout -> logout.logoutSuccessUrl("/login?logout=true")
                         .logoutUrl("/logout")
@@ -63,24 +64,6 @@ public class SecurityConfig {
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
-    }
-
-    public AuthenticationSuccessHandler successHandler() {
-
-        return new AuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
-                Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-
-                System.out.println(roles);
-                System.out.println(roles.contains("admin"));
-
-                if (roles.contains("admin")) {
-                    response.sendRedirect("/");
-                } else response.sendRedirect("/StudentPage");
-            }
-        };
     }
 
 }

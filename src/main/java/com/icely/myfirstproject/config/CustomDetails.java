@@ -7,9 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+
 public class CustomDetails implements UserDetails {
 
-    private Teacher teacher;
+    private final Teacher teacher;
 
     public CustomDetails(Teacher teacher) {
         this.teacher = teacher;
@@ -17,7 +18,9 @@ public class CustomDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(teacher.getRole());
+//        WHEN SINGLE BASED USER !
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(teacher.getRole().toUpperCase());
+        System.out.println(teacher.getRole().toUpperCase());
         return List.of(authority);
     }
 

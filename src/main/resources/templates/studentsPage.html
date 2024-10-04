@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org" >
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <title>Spring CRUD Application</title>
     <link rel="stylesheet"  th:href="@{/css/style.css}" />
 </head>
 <body>
 
+<header th:include="fragments/header">
+
+</header>
+
 <h1>Student List </h1>
 
-<a th:href="@{/admin/student/create}"
-   style="
-    position: absolute;
-    top: 75px;
-    left: 60%;">
+<div sec:authorize="hasAuthority('ADMIN')"
+     style="
+        position: absolute;
+        top: 105px;
+        left: 60%;">
+<a th:href="@{/admin/student/create}">
     <button> Add Student </button>
 </a>
+</div>
 
 <table>
     <tr>
@@ -24,7 +30,7 @@
         <th>Email</th>
         <th>Address</th>
         <th>Number</th>
-        <th> Action </th>
+        <th sec:authorize="hasAuthority('ADMIN')"> Action </th>
     </tr>
     <tr th:each="student : ${students}">
         <td th:text="${student.id}"></td>
@@ -32,7 +38,7 @@
         <td th:text="${student.email}"></td>
         <td th:text="${student.address}"></td>
         <td th:text="${student.number}"></td>
-        <td>
+        <td sec:authorize="hasAuthority('ADMIN')">
             <a th:href="@{/admin/student/edit/{id}(id=${student.id}) }"> <button> Edit </button> </a>
             <a th:href="@{/admin/student/delete/{id}(id=${student.id}) }" onclick="return confirm ('Are you sure you want to delete?')">  <button> delete </button> </a>
         </td>

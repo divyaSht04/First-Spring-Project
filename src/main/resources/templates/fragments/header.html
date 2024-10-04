@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Header Page</title>
+    <style>
+        /* Reset some default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        ol {
+            list-style: none;
+            display: flex;
+        }
+
+        ol li {
+            margin-right: 20px;
+        }
+
+        ol li span {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        ol li a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        ul li {
+            margin-left: 20px;
+        }
+
+        ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        button a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        button a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+
+            <ol>
+                <li > <span> Role Based Authorization </span>  </li>
+            </ol>
+
+
+            <ul>
+                <li sec:authorize="!isAuthenticated()" > <a th:href="@{/login}"> Login </a></li>
+                <li sec:authorize="!isAuthenticated()" > <a th:href="@{/register}"> Register </a></li>
+                <li sec:authorize="isAuthenticated()"> <button>  <a href="/logout"> Logout </a>  </button> </li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>

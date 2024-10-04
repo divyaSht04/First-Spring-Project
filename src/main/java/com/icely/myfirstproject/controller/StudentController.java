@@ -23,7 +23,8 @@ public class StudentController {
         return "index";
     }
 
-    @GetMapping("/admin/students")
+
+    @GetMapping("/students")
     public String students(Model model) {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students",students);
@@ -40,7 +41,7 @@ public class StudentController {
     public String addStudent(@ModelAttribute("student") Student student, Model model) {
         try{
             studentService.addStudent(student);
-            return "redirect:/admin/students";
+            return "redirect:/students";
         }catch (Exception e){
             System.out.println(e.getMessage());
             model.addAttribute("error",e.getMessage());
@@ -65,8 +66,9 @@ public class StudentController {
                 student1.setEmail(student.getEmail());
                 student1.setNumber(student.getNumber());
 
+                System.out.println("done!");
                 studentService.editStudent(student1);
-                return "redirect:/admin/students";
+                return "redirect:/students";
             }
             model.addAttribute("error", "Student not found");
             return "editStudentPage";
@@ -80,14 +82,14 @@ public class StudentController {
     @GetMapping("/admin/student/delete/{id}")
     public String deleteStudentPage(@PathVariable int id) {
         studentService.deleteStudentById(id);
-        return "redirect:/admin/students";
+        return "redirect:/students";
     }
 
     @GetMapping("/StudentPage")
     public String viewStudentPage(Model model) {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students",students);
-        return "viewStudentPage";
+        return "studentsPage";
     }
 
 }
