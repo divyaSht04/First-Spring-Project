@@ -89,7 +89,7 @@ public class StudentController {
     public String viewStudentPage(Model model) {
         List<Student> students = studentService.getAllStudents();
         model.addAttribute("students",students);
-        return "studentsPage";
+        return "viewStudentPage";
     }
 
 }

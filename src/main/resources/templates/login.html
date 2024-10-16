@@ -11,9 +11,8 @@
             align-items: center;
             flex-direction: column;
             height: 100%;
-            margin: 0;
             gap: 30px;
-            margin-top: 50px;
+            margin: 50px 0 0;
         }
 
         form {
@@ -78,22 +77,22 @@
 </header>
 
 <!--    ERROR THROUGH PARAMETER OF SPRING SECURITY-->
-<!--<div th:if="${param.error}" class="error">-->
-<!--    Invalid username or password. Please try again.-->
-<!--</div>-->
-
-<!--<div th:if="${param.logout}" class="logout-success">-->
-<!--    You have been logged out successfully.-->
-<!--</div>-->
-
-<!--    CUSTOM ERROR MESSAGE!-->
-<div th:if="${loginError}" class="error">
-    <p th:text="${loginError}"> </p>
+<div th:if="${param.error}" class="error">
+    Invalid username or password. Please try again.
 </div>
 
-<div th:if="${logoutSuccess}" class="logout-success">
-    <p th:text="${logoutSuccess}"> </p>
+<div th:if="${param.logout}" class="logout-success">
+    You have been logged out successfully.
 </div>
+
+<!--&lt;!&ndash;    CUSTOM ERROR MESSAGE!&ndash;&gt;-->
+<!--<div th:if="${loginError}" class="error">-->
+<!--    <p th:text="${loginError}"> </p>-->
+<!--</div>-->
+
+<!--<div th:if="${logoutSuccess}" class="logout-success">-->
+<!--    <p th:text="${logoutSuccess}"> </p>-->
+<!--</div>-->
 
 <main>
 <!--    LOGIN FORM-->

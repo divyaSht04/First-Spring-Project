@@ -33,18 +33,14 @@ public class Teacher {
 
     @NotEmpty(message = "Confirm Password is required.")
     private String confirmPassword;
+
     private String role;
 
-    public Teacher() {
+    public String getRole() {
+        return role;
     }
 
-    public Teacher(int id, String firstName, String lastName, String email, String phoneNumber, String password, String role) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -104,11 +100,4 @@ public class Teacher {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.naming.Binding;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 public class AuthController {
@@ -26,18 +22,19 @@ public class AuthController {
     @Autowired
     private TeacherServices teacherServices;
 
+
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model) {
 
-        String loginError = (String) request.getAttribute("loginError");
-        if (loginError!= null) {
-            model.addAttribute("loginError", "Invalid username or password.");
-        }
-
-        String logoutMessage = (String) request.getAttribute("logoutSuccess");
-        if (logoutMessage!= null) {
-            model.addAttribute("logoutSuccess", "You have been logged out.");
-        }
+//        String loginError = (String) request.getAttribute("loginError");
+//        if (loginError!= null) {
+//            model.addAttribute("loginError", "Invalid username or password.");
+//        }
+//
+//        String logoutMessage = (String) request.getAttribute("logoutSuccess");
+//        if (logoutMessage!= null) {
+//            model.addAttribute("logoutSuccess", "You have been logged out.");
+//        }
 
         return "login";
     }
@@ -66,7 +63,9 @@ public class AuthController {
             return "register";
         };
 
-        teacher.setRole("NORMAL");
+
+//        Role teacherRole = roleServices.findByName("ROLE_NORMAL");
+        teacher.setRole("normal");
         teacher.setPassword(passwordEncoder.encode(teacher.getPassword()));
         teacherServices.saveTeacher(teacher);
 

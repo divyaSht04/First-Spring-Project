@@ -22,6 +22,7 @@ public class CustomDetails implements UserDetails {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(teacher.getRole().toUpperCase());
         System.out.println(teacher.getRole().toUpperCase());
         return List.of(authority);
+
     }
 
     @Override
